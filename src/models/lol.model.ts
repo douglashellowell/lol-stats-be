@@ -3,6 +3,8 @@ import LeagueJS from 'leaguejs';
 const leagueJs = new LeagueJS(process.env.RIOT_API_KEY);
 // TODO - put this in the render config.
 
+leagueJs.StaticData.setup('/');
+
 type SelectStatsBySummonerNameOptions = {
   summonerName: string;
   region: string;
