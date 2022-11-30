@@ -1,25 +1,54 @@
 import { RequestHandler } from 'express';
-import { selectStatsBySummonerName } from '../models/lol.model';
+import { LeagueRegion } from 'galeforce/dist/riot-api';
+import CustomError from '../errorHandling/CustomError';
+import {
+  fetchMatchIdsByPuuid,
+  selectStatsBySummonerName,
+} from '../models/lol.model';
 import { GameType } from '../types';
 
 export const getStatsBySummonerName: RequestHandler<
   { summonerName: string },
   {},
   {},
-  { region: string; game_type: GameType; count: number }
+  { platform: LeagueRegion; type: GameType; count: number }
 > = async (req, res, next) => {
   const { summonerName } = req.params;
-  const { region, game_type, count } = req.query;
+  const { platform, type, count } = req.query;
 
   try {
     const stats = await selectStatsBySummonerName({
       summonerName,
       count,
-      game_type,
-      region,
+      type: type,
+      platform,
     });
 
-    res.status(200).send({ stats });
+    res.status(200).send({
+      summoner: stats.summoner,
+      matches: stats.matches,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getMatchIdsByPuuid: RequestHandler<
+  { puuid: string },
+  {},
+  {},
+  { platform: LeagueRegion; type: GameType; count: number }
+> = async (req, res, next) => {
+  const { puuid } = req.params;
+  const { count, type, platform } = req.query;
+
+  try {
+    const matchIds = await fetchMatchIdsByPuuid(puuid, {
+      count,
+      type,
+      platform,
+    });
+    res.status(200).send({ matchIds });
   } catch (err) {
     next(err);
   }
