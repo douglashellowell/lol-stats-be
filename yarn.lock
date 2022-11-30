@@ -1039,11 +1039,6 @@ touch@^3.1.0:
   dependencies:
     nopt "~1.0.10"
 
-ts-lib@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ts-lib/-/ts-lib-0.0.5.tgz#7f319885478de67f575a3b890a3f30fc6159352a"
-  integrity sha512-pBLcwddLU22ib+vOAzhmTVqQZVN6FD8LtI0Rq4W6BZMOwhOpXqkKRi8f7P5F8KkuPzeunpimLbL0jznWsBeQHg==
-
 ts-node@^10.2.1, ts-node@^10.9.1:
   version "10.9.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
