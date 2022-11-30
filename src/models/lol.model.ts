@@ -5,7 +5,7 @@ import { GameType } from '../types';
 
 const galeforce = new GaleforceModule({
   'riot-api': {
-    key: 'RGAPI-d428e8ca-2194-44df-aa01-88679646c807',
+    key: process.env.RIOT_API_KEY,
   },
   'rate-limit': {
     cache: {
