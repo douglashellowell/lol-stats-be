@@ -14,14 +14,18 @@ export const handleCustomerrors = (
   }
 };
 
-export const handleRiotAuthErrors = (
+export const handleRiotErrors = (
   err: Error,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  console.log(typeof err);
+
   if (err.message.includes('Riot API key')) {
-    res.status(403).send({ message: 'Api key is expired' });
+    res.status(403).send({ message: 'Api key is invalid or expired' });
+  } else if (err.message.includes('Data fetch failed with status code 404')) {
+    res.status(404).send({ message: 'Data not found' });
   } else {
     next(err);
   }

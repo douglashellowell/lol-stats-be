@@ -3,6 +3,10 @@ import { LeagueRegion, RiotRegion } from 'galeforce/dist/riot-api';
 import { platformToRegion } from '../api/utils';
 import { GameType } from '../types';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const galeforce = new GaleforceModule({
   'riot-api': {
     key: process.env.RIOT_API_KEY,

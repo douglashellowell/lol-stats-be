@@ -8,7 +8,7 @@ import CustomError from './errorHandling/CustomError';
 import {
   handle500Errors,
   handleCustomerrors,
-  handleRiotAuthErrors,
+  handleRiotErrors,
 } from './errorHandling/errorMiddleware';
 import { validateQueries } from './middleware';
 
@@ -34,7 +34,7 @@ app.get(
 app.get('/matchIds/by-puuid/:puuid', validateQueries, getMatchIdsByPuuid);
 
 app.use(handleCustomerrors);
-app.use(handleRiotAuthErrors);
+app.use(handleRiotErrors);
 app.use(handle500Errors);
 
 export default app;
